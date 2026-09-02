@@ -489,23 +489,74 @@ if not st.session_state.authenticated:
             placeholder="Enter your API key..."
         )
 
+if st.button("Launch CyberGuard AI →"):
 
-        if st.button("Launch CyberGuard AI →"):
+    if not api_key.strip():
 
-            if api_key.strip():
+        st.warning(
+            "⚠️ Please enter your OpenAI API Key first."
+        )
 
-                st.session_state.api_key = api_key.strip()
+    else:
 
-                st.session_state.authenticated = True
+        try:
 
-                st.rerun()
+            with st.spinner(
+                "🔐 Verifying your API key..."
+            ):
+
+                # Test API Key with a very small request
+                test_chat = ChatOpenAI(
+
+                    model="gpt-5-nano",
+
+                    temperature=0,
+
+                    api_key=api_key.strip(),
+
+                    max_tokens=5
+                )
+
+
+                # Small test request
+                test_chat.invoke(
+                    "Reply with: OK"
+                )
+
+
+            # If successful
+            st.session_state.api_key = api_key.strip()
+
+            st.session_state.authenticated = True
+
+            st.success(
+                "✅ API Key verified successfully!"
+            )
+
+            st.rerun()
+
+
+        except Exception as error:
+
+            error_message = str(error).lower()
+
+
+            # Invalid API Key
+            if (
+                "api key" in error_message
+                or "authentication" in error_message
+                or "401" in error_message
+            ):
+
+                st.error(
+                    "❌ Invalid API Key. Please enter a valid OpenAI API Key."
+                )
 
             else:
 
-                st.warning(
-                    "Please enter your API Key first."
+                st.error(
+                    f"❌ Unable to verify API Key: {str(error)}"
                 )
-
 
         st.markdown(
             """
