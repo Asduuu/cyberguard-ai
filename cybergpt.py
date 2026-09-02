@@ -27,9 +27,9 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* MAIN BACKGROUND */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .stApp {
     background:
@@ -47,7 +47,9 @@ st.markdown("""
 }
 
 
-/* Hide Streamlit Branding */
+/* ===================================================== */
+/* HIDE STREAMLIT BRANDING */
+/* ===================================================== */
 
 #MainMenu {
     visibility: hidden;
@@ -62,7 +64,9 @@ header {
 }
 
 
-/* Main Container */
+/* ===================================================== */
+/* MAIN CONTAINER */
+/* ===================================================== */
 
 .block-container {
     max-width: 1050px;
@@ -71,9 +75,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* TITLE */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .main-title {
     text-align: center;
@@ -103,9 +107,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* SHIELD */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .shield {
     text-align: center;
@@ -114,9 +118,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* WELCOME */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .welcome-text {
     text-align: center;
@@ -128,9 +132,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* FEATURE CARDS */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .feature-card {
 
@@ -197,9 +201,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* API CARD */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .api-box {
 
@@ -224,9 +228,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
-/* STREAMLIT INPUT */
-/* ----------------------------------------------------- */
+/* ===================================================== */
+/* API INPUT */
+/* ===================================================== */
 
 .stTextInput input {
 
@@ -246,11 +250,21 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
-/* BUTTON */
-/* ----------------------------------------------------- */
+.stTextInput input:focus {
 
-.stButton button {
+    border:
+        1px solid #22d3ee !important;
+
+    box-shadow:
+        0 0 0 1px #22d3ee !important;
+}
+
+
+/* ===================================================== */
+/* FORM BUTTON */
+/* ===================================================== */
+
+.stFormSubmitButton button {
 
     width: 100%;
 
@@ -272,12 +286,35 @@ header {
             #22d3ee,
             #3b82f6
         );
+
+    transition: 0.3s;
 }
 
 
-/* ----------------------------------------------------- */
+.stFormSubmitButton button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(34,211,238,0.25);
+}
+
+
+/* ===================================================== */
+/* NORMAL BUTTON */
+/* ===================================================== */
+
+.stButton button {
+
+    border-radius: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ===================================================== */
 /* CHAT INPUT */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 [data-testid="stChatInput"] {
 
@@ -297,9 +334,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* CHAT MESSAGE */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 [data-testid="stChatMessage"] {
 
@@ -315,9 +352,9 @@ header {
 }
 
 
-/* ----------------------------------------------------- */
+/* ===================================================== */
 /* STATUS BADGE */
-/* ----------------------------------------------------- */
+/* ===================================================== */
 
 .status {
 
@@ -330,6 +367,35 @@ header {
     margin-top: 25px;
 }
 
+
+/* ===================================================== */
+/* MOBILE RESPONSIVE */
+/* ===================================================== */
+
+@media (max-width: 768px) {
+
+    .main-title {
+        font-size: 42px;
+        margin-top: 40px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+
+    .shield {
+        font-size: 60px;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+    }
+
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -408,7 +474,9 @@ cybersecurity activities.
 
 if not st.session_state.authenticated:
 
+    # -----------------------------------------------------
     # Shield
+    # -----------------------------------------------------
 
     st.markdown(
         "<div class='shield'>🛡️</div>",
@@ -416,7 +484,9 @@ if not st.session_state.authenticated:
     )
 
 
+    # -----------------------------------------------------
     # Title
+    # -----------------------------------------------------
 
     st.markdown(
         "<div class='main-title'>CyberGuard AI</div>",
@@ -424,7 +494,9 @@ if not st.session_state.authenticated:
     )
 
 
+    # -----------------------------------------------------
     # Subtitle
+    # -----------------------------------------------------
 
     st.markdown(
         """
@@ -436,7 +508,9 @@ if not st.session_state.authenticated:
     )
 
 
+    # -----------------------------------------------------
     # Tagline
+    # -----------------------------------------------------
 
     st.markdown(
         """
@@ -448,18 +522,30 @@ if not st.session_state.authenticated:
     )
 
 
+    # -----------------------------------------------------
     # Center Columns
+    # -----------------------------------------------------
 
-    left, center, right = st.columns([1, 1.5, 1])
+    left, center, right = st.columns(
+        [1, 1.5, 1]
+    )
 
 
     with center:
+
+        # -------------------------------------------------
+        # API CARD
+        # -------------------------------------------------
 
         st.markdown(
             "<div class='api-box'>",
             unsafe_allow_html=True
         )
 
+
+        # -------------------------------------------------
+        # Header
+        # -------------------------------------------------
 
         st.markdown(
             """
@@ -472,7 +558,8 @@ if not st.session_state.authenticated:
             </h3>
 
             <p style='text-align:center;
-                      color:#94a3b8;'>
+                      color:#94a3b8;
+                      margin-bottom:25px;'>
 
             Enter your OpenAI API Key to launch
             CyberGuard AI.
@@ -483,80 +570,147 @@ if not st.session_state.authenticated:
         )
 
 
-        api_key = st.text_input(
-            "OpenAI API Key",
-            type="password",
-            placeholder="Enter your API key..."
-        )
+        # =================================================
+        # API KEY FORM
+        # =================================================
 
-if st.button("Launch CyberGuard AI →"):
+        with st.form(
+            key="api_key_form",
+            clear_on_submit=False
+        ):
 
-    if not api_key.strip():
-
-        st.warning(
-            "⚠️ Please enter your OpenAI API Key first."
-        )
-
-    else:
-
-        try:
-
-            with st.spinner(
-                "🔐 Verifying your API key..."
-            ):
-
-                # Test API Key with a very small request
-                test_chat = ChatOpenAI(
-
-                    model="gpt-5-nano",
-
-                    temperature=0,
-
-                    api_key=api_key.strip(),
-
-                    max_tokens=5
-                )
-
-
-                # Small test request
-                test_chat.invoke(
-                    "Reply with: OK"
-                )
-
-
-            # If successful
-            st.session_state.api_key = api_key.strip()
-
-            st.session_state.authenticated = True
-
-            st.success(
-                "✅ API Key verified successfully!"
+            api_key = st.text_input(
+                "OpenAI API Key",
+                type="password",
+                placeholder="Enter your API key..."
             )
 
-            st.rerun()
+
+            # -------------------------------------------------
+            # IMPORTANT:
+            # Pressing ENTER inside the input will submit
+            # this form.
+            # -------------------------------------------------
+
+            launch = st.form_submit_button(
+                "Launch CyberGuard AI →",
+                use_container_width=True
+            )
 
 
-        except Exception as error:
+        # =================================================
+        # HANDLE FORM SUBMISSION
+        # =================================================
 
-            error_message = str(error).lower()
+        if launch:
 
+            # -------------------------------------------------
+            # Empty API Key
+            # -------------------------------------------------
 
-            # Invalid API Key
-            if (
-                "api key" in error_message
-                or "authentication" in error_message
-                or "401" in error_message
-            ):
+            if not api_key.strip():
 
-                st.error(
-                    "❌ Invalid API Key. Please enter a valid OpenAI API Key."
+                st.warning(
+                    "⚠️ Please enter your OpenAI API Key first."
                 )
+
+
+            # -------------------------------------------------
+            # API Key Exists
+            # -------------------------------------------------
 
             else:
 
-                st.error(
-                    f"❌ Unable to verify API Key: {str(error)}"
-                )
+                try:
+
+                    # -----------------------------------------
+                    # Verify API Key
+                    # -----------------------------------------
+
+                    with st.spinner(
+                        "🔐 Verifying your API key..."
+                    ):
+
+                        test_chat = ChatOpenAI(
+                            model="gpt-5-nano",
+                            temperature=0,
+                            api_key=api_key.strip(),
+                            max_tokens=5
+                        )
+
+
+                        # Small test request
+                        test_chat.invoke(
+                            "Reply with: OK"
+                        )
+
+
+                    # -----------------------------------------
+                    # Save API Key
+                    # -----------------------------------------
+
+                    st.session_state.api_key = (
+                        api_key.strip()
+                    )
+
+
+                    # -----------------------------------------
+                    # Authentication Success
+                    # -----------------------------------------
+
+                    st.session_state.authenticated = True
+
+
+                    st.success(
+                        "✅ API Key verified successfully!"
+                    )
+
+
+                    # -----------------------------------------
+                    # Reload App
+                    # -----------------------------------------
+
+                    st.rerun()
+
+
+                except Exception as error:
+
+                    error_message = str(error).lower()
+
+
+                    # -----------------------------------------
+                    # Invalid API Key
+                    # -----------------------------------------
+
+                    if (
+                        "api key" in error_message
+                        or "authentication" in error_message
+                        or "401" in error_message
+                        or "unauthorized" in error_message
+                        or "invalid_api_key" in error_message
+                    ):
+
+                        st.error(
+                            "❌ Invalid API Key. "
+                            "Please enter a valid OpenAI API Key."
+                        )
+
+
+                    # -----------------------------------------
+                    # Other Error
+                    # -----------------------------------------
+
+                    else:
+
+                        st.error(
+                            f"❌ Unable to verify API Key: "
+                            f"{str(error)}"
+                        )
+
+
+        # -------------------------------------------------
+        # Security Message
+        # -------------------------------------------------
 
         st.markdown(
             """
@@ -579,7 +733,9 @@ if st.button("Launch CyberGuard AI →"):
         )
 
 
-    # Footer
+    # =====================================================
+    # FOOTER
+    # =====================================================
 
     st.markdown(
         """
@@ -590,6 +746,10 @@ if st.button("Launch CyberGuard AI →"):
         unsafe_allow_html=True
     )
 
+
+    # =====================================================
+    # STOP LOGIN PAGE
+    # =====================================================
 
     st.stop()
 
@@ -603,13 +763,25 @@ top_left, top_center, top_right = st.columns(
 )
 
 
+# ---------------------------------------------------------
+# Logo
+# ---------------------------------------------------------
+
 with top_left:
 
     st.markdown(
-        "<h3 style='color:white;'>🛡️ CyberGuard</h3>",
+        """
+        <h3 style='color:white;'>
+        🛡️ CyberGuard
+        </h3>
+        """,
         unsafe_allow_html=True
     )
 
+
+# ---------------------------------------------------------
+# Center Header
+# ---------------------------------------------------------
 
 with top_center:
 
@@ -628,9 +800,16 @@ with top_center:
     )
 
 
+# ---------------------------------------------------------
+# Clear Chat
+# ---------------------------------------------------------
+
 with top_right:
 
-    if st.button("Clear Chat"):
+    if st.button(
+        "Clear Chat",
+        use_container_width=True
+    ):
 
         st.session_state.messages = []
 
@@ -643,11 +822,19 @@ with top_right:
 
 if len(st.session_state.messages) == 0:
 
+    # -----------------------------------------------------
+    # Shield
+    # -----------------------------------------------------
+
     st.markdown(
         "<div class='shield'>🛡️</div>",
         unsafe_allow_html=True
     )
 
+
+    # -----------------------------------------------------
+    # Title
+    # -----------------------------------------------------
 
     st.markdown(
         "<div class='main-title'>CyberGuard AI</div>",
@@ -655,16 +842,26 @@ if len(st.session_state.messages) == 0:
     )
 
 
+    # -----------------------------------------------------
+    # Subtitle
+    # -----------------------------------------------------
+
     st.markdown(
         """
         <div class='subtitle'>
+
         Your AI Assistant for Cybersecurity,
         Threat Awareness & Digital Safety
+
         </div>
         """,
         unsafe_allow_html=True
     )
 
+
+    # -----------------------------------------------------
+    # Welcome
+    # -----------------------------------------------------
 
     st.markdown(
         """
@@ -676,10 +873,16 @@ if len(st.session_state.messages) == 0:
     )
 
 
-    # Feature Cards
+    # =====================================================
+    # FEATURE CARDS
+    # =====================================================
 
     col1, col2, col3, col4 = st.columns(4)
 
+
+    # -----------------------------------------------------
+    # Card 1
+    # -----------------------------------------------------
 
     with col1:
 
@@ -687,21 +890,27 @@ if len(st.session_state.messages) == 0:
             """
             <div class='feature-card'>
 
-            <div class='feature-icon'>🔍</div>
+                <div class='feature-icon'>
+                    🔍
+                </div>
 
-            <div class='feature-title'>
-            Threat Analysis
-            </div>
+                <div class='feature-title'>
+                    Threat Analysis
+                </div>
 
-            <div class='feature-description'>
-            Understand cyber threats
-            </div>
+                <div class='feature-description'>
+                    Understand cyber threats
+                </div>
 
             </div>
             """,
             unsafe_allow_html=True
         )
 
+
+    # -----------------------------------------------------
+    # Card 2
+    # -----------------------------------------------------
 
     with col2:
 
@@ -709,21 +918,27 @@ if len(st.session_state.messages) == 0:
             """
             <div class='feature-card'>
 
-            <div class='feature-icon'>📧</div>
+                <div class='feature-icon'>
+                    📧
+                </div>
 
-            <div class='feature-title'>
-            Phishing Detection
-            </div>
+                <div class='feature-title'>
+                    Phishing Detection
+                </div>
 
-            <div class='feature-description'>
-            Identify suspicious messages
-            </div>
+                <div class='feature-description'>
+                    Identify suspicious messages
+                </div>
 
             </div>
             """,
             unsafe_allow_html=True
         )
 
+
+    # -----------------------------------------------------
+    # Card 3
+    # -----------------------------------------------------
 
     with col3:
 
@@ -731,15 +946,17 @@ if len(st.session_state.messages) == 0:
             """
             <div class='feature-card'>
 
-            <div class='feature-icon'>🔐</div>
+                <div class='feature-icon'>
+                    🔐
+                </div>
 
-            <div class='feature-title'>
-            Password Safety
-            </div>
+                <div class='feature-title'>
+                    Password Safety
+                </div>
 
-            <div class='feature-description'>
-            Improve account security
-            </div>
+                <div class='feature-description'>
+                    Improve account security
+                </div>
 
             </div>
             """,
@@ -747,21 +964,27 @@ if len(st.session_state.messages) == 0:
         )
 
 
+    # -----------------------------------------------------
+    # Card 4
+    # -----------------------------------------------------
+
     with col4:
 
         st.markdown(
             """
             <div class='feature-card'>
 
-            <div class='feature-icon'>🌐</div>
+                <div class='feature-icon'>
+                    🌐
+                </div>
 
-            <div class='feature-title'>
-            Digital Privacy
-            </div>
+                <div class='feature-title'>
+                    Digital Privacy
+                </div>
 
-            <div class='feature-description'>
-            Protect your online identity
-            </div>
+                <div class='feature-description'>
+                    Protect your online identity
+                </div>
 
             </div>
             """,
@@ -775,18 +998,30 @@ if len(st.session_state.messages) == 0:
 
 for message in st.session_state.messages:
 
+    # -----------------------------------------------------
+    # User Message
+    # -----------------------------------------------------
+
     if isinstance(message, HumanMessage):
 
         with st.chat_message("user"):
 
-            st.markdown(message.content)
+            st.markdown(
+                message.content
+            )
 
+
+    # -----------------------------------------------------
+    # AI Message
+    # -----------------------------------------------------
 
     elif isinstance(message, AIMessage):
 
         with st.chat_message("assistant"):
 
-            st.markdown(message.content)
+            st.markdown(
+                message.content
+            )
 
 
 # =========================================================
@@ -804,38 +1039,49 @@ user_prompt = st.chat_input(
 
 if user_prompt:
 
-
-    # Show User Message
+    # -----------------------------------------------------
+    # Display User Message
+    # -----------------------------------------------------
 
     with st.chat_message("user"):
 
-        st.markdown(user_prompt)
+        st.markdown(
+            user_prompt
+        )
 
 
+    # -----------------------------------------------------
     # Save User Message
+    # -----------------------------------------------------
 
     st.session_state.messages.append(
-
         HumanMessage(
             content=user_prompt
         )
-
     )
 
 
     try:
 
-
-        # Initialize Model
+        # =================================================
+        # INITIALIZE MODEL
+        # =================================================
 
         chat = ChatOpenAI(
-    model="gpt-5.6-luna",
-    temperature=0.3,
-    api_key=st.session_state.api_key
-)
+
+            # Use a model available to your OpenAI API account
+            model="gpt-5-nano",
+
+            temperature=0.3,
+
+            api_key=st.session_state.api_key
+
+        )
 
 
-        # Complete Conversation
+        # =================================================
+        # COMPLETE CONVERSATION
+        # =================================================
 
         conversation = [
 
@@ -846,7 +1092,9 @@ if user_prompt:
         ] + st.session_state.messages
 
 
-        # Generate Response
+        # =================================================
+        # GENERATE RESPONSE
+        # =================================================
 
         with st.chat_message("assistant"):
 
@@ -859,12 +1107,18 @@ if user_prompt:
                 )
 
 
+            # -------------------------------------------------
+            # Display Response
+            # -------------------------------------------------
+
             st.markdown(
                 response.content
             )
 
 
-        # Save Response
+        # =================================================
+        # SAVE AI RESPONSE
+        # =================================================
 
         st.session_state.messages.append(
 
